@@ -23,37 +23,6 @@ The pipeline demonstrates key **streaming** concepts, including **producer/consu
 - **Libraries:** Kafka Python Client, Pandas, Google Cloud SDK, BigQuery Client , psutil, GPUtil, wmi 
 
 ---
- 
-## Skills Demonstrated
-
-- **Apache Kafka**
-  - Producer / Consumer model
-  - Topic-based event streaming
-  - Message batching and offset management
-  - Decoupled ingestion architecture
-
-- Streaming Data Engineering
-  - Continuous event generation
-  - Near real-time ingestion
-  - Backpressure-safe batching before storage
-  - Immutable raw event storage
-
-- Cloud Data Lake Design
-
-  - Raw data stored in GCS
-  - Time-based partitioning (year / month / day)
-  - JSON event storage for replayability
-
-- Dockerized Development
-  - Kafka running locally in containers
-  - Producer, consumer, and Airflow running in Docker
-  - Production-like local environment
-
-- Apache Airflow
-  - Containerized DAG for orchestrating streaming ingestion (currently mirrors Kafka consumer)
-  - Supports future workflow automation, scheduling, and batch processing over raw metrics
-
----
 
 ## Project Architecture
 
@@ -125,6 +94,37 @@ This allows analysts to query both:
 - Aggregated metrics for reporting, monitoring, and dashboards
 
 ---
+ 
+## Skills Demonstrated
+
+- **Apache Kafka**
+  - Producer / Consumer model
+  - Topic-based event streaming
+  - Message batching and offset management
+  - Decoupled ingestion architecture
+
+- Streaming Data Engineering
+  - Continuous event generation
+  - Near real-time ingestion
+  - Backpressure-safe batching before storage
+  - Immutable raw event storage
+
+- Cloud Data Lake Design
+
+  - Raw data stored in GCS
+  - Time-based partitioning (year / month / day)
+  - JSON event storage for replayability
+
+- Dockerized Development
+  - Kafka running locally in containers
+  - Producer, consumer, and Airflow running in Docker
+  - Production-like local environment
+
+- Apache Airflow
+  - Containerized DAG for orchestrating streaming ingestion (currently mirrors Kafka consumer)
+  - Supports future workflow automation, scheduling, and batch processing over raw metrics
+
+---
 
 ## Use Case
 This pipeline is suitable for systems that require:
@@ -142,3 +142,4 @@ A company wants to monitor its computers or servers in real time.
   - Airflow runs hourly to load raw metrics into BigQuery and compute aggregates (averages, trends, alerts) for performance monitoring dashboards.
 
 This allows system administrators to track health trends, detect anomalies early, and analyze historical performance efficiently.
+
