@@ -1,0 +1,7 @@
+kafka-python
+psutil
+GPUtil
+WMI
+pandas
+google-cloud-storage
+google-cloud-bigquery
