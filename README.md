@@ -94,6 +94,10 @@ Airflow is intended to run hourly DAGs to:
   - Compute aggregated metrics (averages, trends, summaries)
   - Store aggregated results into a BigQuery analytics table
 
+Below is a screenshot of what data in the aggregated table in BigQuery looks like:
+![bq_agg_structure](assets/bq_agg_structure.png)
+
+
 This allows analysts to query both:
 - Raw metrics for debugging, replay, or detailed inspection
 - Aggregated metrics for reporting, monitoring, and dashboards
@@ -147,5 +151,6 @@ A company wants to monitor its computers or servers in real time.
   - Airflow runs hourly to load raw metrics into BigQuery and compute aggregates (averages, trends, alerts) for performance monitoring dashboards.
 
 This allows system administrators to track health trends, detect anomalies early, and analyze historical performance efficiently.
+
 
 
