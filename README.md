@@ -2,13 +2,16 @@
 
 ## Overview
 
-This project implements a real-time **`streaming`** data pipeline that collects system-level metrics and processes them using **`Apache Kafka`**, **`Apache Airflow`**, **`Docker`**, and **`Google Cloud Storage (GCS)`**.
+This project implements an end-to-end **`Streaming`** + **`Batch`** data pipeline for collecting and analyzing system-level metrics using **`Apache Kafka`**, **`Apache Airflow`**, **`Docker`**, and **`Google Cloud Platform`**.
 
-A **Kafka producer** continuously gathers machine metrics (**CPU, RAM, disk, GPU, temperature, battery health, and network I/O**) and streams them to a Kafka topic.
+A **`Kafka producer`** continuously gathers machine metrics (**CPU, RAM, disk, GPU, temperature, battery health, and network I/O**) and streams them to a Kafka topic.  
 
-A **Kafka consumer** reads the events, batches them, and writes **time-partitioned** JSON files to GCS, forming a raw data lake.
+A **`Kafka consumer`** reads the events, batches them, and writes **time-partitioned** JSON files to **Google Cloud Storage (GCS)**, forming a raw data lake.
 
-The pipeline demonstrates key **streaming** concepts, including **producer/consumer architecture**, **time-based partitioning**, and **real-time ingestion**, all within a containerized Docker environment.
+An **`Apache Airflow DAG`**, running hourly, orchestrates batch workflows that load raw metrics from GCS into **`BigQuery`**, compute **hourly aggregations**, and store analytics-ready tables for monitoring and analysis.
+
+The pipeline demonstrates core **Streaming** and **Batch Processing** concepts, including **producer/consumer architecture**, **time-based partitioning**, **containerized orchestration**, and **cloud data warehousing**.
+
 
 
 ---
@@ -49,7 +52,9 @@ Components:
 
 - Apache Airflow
   - Runs in **Docker**
-  - Reserved for future orchestration and downstream processing
+  - Orchestrates hourly batch workflows
+  - Loads raw metrics from **GCS** into **BigQuery**
+  - Computes and stores hourly aggregated metrics in **BigQuery**
 
 ---
 
@@ -100,13 +105,11 @@ This allows analysts to query both:
 - **Apache Kafka**
   - Producer / Consumer model
   - Topic-based event streaming
-  - Message batching and offset management
   - Decoupled ingestion architecture
 
 - Streaming Data Engineering
   - Continuous event generation
   - Near real-time ingestion
-  - Backpressure-safe batching before storage
   - Immutable raw event storage
 
 - Cloud Data Lake Design
@@ -117,12 +120,14 @@ This allows analysts to query both:
 
 - Dockerized Development
   - Kafka running locally in containers
-  - Producer, consumer, and Airflow running in Docker
+  - Airflow running in Docker using Astro
   - Production-like local environment
 
 - Apache Airflow
-  - Containerized DAG for orchestrating streaming ingestion (currently mirrors Kafka consumer)
-  - Supports future workflow automation, scheduling, and batch processing over raw metrics
+  - Containerized hourly DAG for batch processing
+  - Loads raw JSON metrics from GCS to BigQuery
+  - Performs idempotent hourly aggregations into analytics tables
+  - Manages task dependencies and scheduling in a production-style workflow
 
 ---
 
@@ -142,4 +147,5 @@ A company wants to monitor its computers or servers in real time.
   - Airflow runs hourly to load raw metrics into BigQuery and compute aggregates (averages, trends, alerts) for performance monitoring dashboards.
 
 This allows system administrators to track health trends, detect anomalies early, and analyze historical performance efficiently.
+
 
